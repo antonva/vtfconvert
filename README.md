@@ -1,6 +1,10 @@
 # vtfconvert
 A program to transform images to VTF files and vice versa.
 
+Originally written to ease the process of making custom textures for
+Valve Software's Counter-Strike: Global Offensive (CSGO)
+but has applications for other Valve games.
+
 #### Usage:
 ```bash
   vtfconvert <input file> <output file>
