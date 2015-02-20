@@ -12,15 +12,17 @@
 
 /* Number of arguments expected. */
 #define ARGS (3)
+
 void save_vtf(char** argv);
 void load_image(char** argv);
 void print_usage();
-void print_help();
+void print_help(); /* TODO: Implement me. */
+void verify_vtf(char* file);
 
 int main( int argc, char *argv[] ) 
 {
 	ilInit();
-	if ( argc == 3) {
+	if ( argc == ARGS) {
 		load_image(argv);
 	} else { 
 		print_usage();
@@ -35,7 +37,7 @@ void save_vtf(char** argv)
 	printf("Trying to save as VTF.\n");
 	ilEnable(IL_FILE_OVERWRITE);
 	ilSave(IL_VTF, argv[2]);
-	printf("Image saved successfully.\n");
+	verify_vtf(argv[2]);
 }
 
 void load_image(char** argv)
@@ -50,4 +52,13 @@ void load_image(char** argv)
 void print_usage() 
 {
 	printf( "Usage: vtfconvert <input file> <output>\n" );
+}
+
+void verify_vtf(char* file)
+{
+	if (ilIsValid(IL_VTF, file)) {
+		printf("%s saved successfully.\n", file);
+	} else {
+		printf("ERROR: %s is corrupt.\n", file);
+	}
 }
